@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Екатерина Яхонтова — Спикер. Финансы × AI</title>
+<meta name="description" content="Финансист с 18-летним опытом, создатель AI-инструментов. Выступления для финансистов, CFO и предпринимателей об автоматизации рутины с помощью нейросетей.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── VARIABLES ── */
+:root{
+  --bg:#07071A;
+  --bg-card:#0F102A;
+  --bg-nested:#161830;
+  --blue:#4D9FFF;
+  --violet:#7959AD;
+  --magenta:#C330BE;
+  --emerald:#00D4AA;
+  --white:#FFFFFF;
+  --body:#D0D8F0;
+  --muted:#7A8BB0;
+  --grad-cta:linear-gradient(135deg,#7959AD,#C330BE);
+  --grad-text:linear-gradient(90deg,#fff 0%,#C330BE 60%,#7959AD 100%);
+  --shadow-cta:0 0 28px rgba(195,48,190,0.38);
+  --shadow-cta-hover:0 0 44px rgba(195,48,190,0.58);
+  --border:rgba(255,255,255,0.07);
+  --border-blue:rgba(77,159,255,0.2);
+  --r:16px;
+}
+
+/* ── RESET ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  background:linear-gradient(180deg,#07071A 0%,#0A0B28 35%,#080924 65%,#07071A 100%);
+  background-attachment:fixed;
+  color:var(--body);
+  font-family:'Inter',sans-serif;
+  font-size:16px;line-height:1.7;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* ── TYPOGRAPHY ── */
+h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;color:var(--white);line-height:1.2}
+h1{font-size:clamp(36px,5vw,68px);font-weight:700}
+h2{font-size:clamp(28px,3.5vw,48px);font-weight:700}
+h3{font-size:clamp(18px,2vw,26px);font-weight:600}
+.mono{font-family:'DM Mono',monospace}
+
+@keyframes gradShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.grad-text{
+  background:linear-gradient(90deg,#fff 0%,#4D9FFF 20%,#C330BE 40%,#7959AD 60%,#00D4AA 80%,#fff 100%);
+  background-size:300% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:gradShift 7s ease infinite;
+}
+
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.6)}}
+.section-tag{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:13px;font-weight:600;color:var(--violet);letter-spacing:.05em;margin-bottom:14px;
+  text-transform:uppercase;
+}
+.section-tag::before{
+  content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0;
+  background:var(--magenta);animation:pulse 2.2s ease-in-out infinite;
+  box-shadow:0 0 8px var(--magenta);
+}
+.section-title{margin-bottom:12px;position:relative;display:inline-block}
+.section-title::after{
+  content:'';position:absolute;bottom:-6px;left:0;
+  height:2px;width:0;border-radius:2px;
+  background:var(--grad-cta);
+  transition:width .9s cubic-bezier(.22,1,.36,1) .3s;
+}
+.reveal.visible .section-title::after,.reveal-left.visible .section-title::after{width:64px}
+.section-sub{color:var(--body);font-size:17px;max-width:560px;opacity:.82}
+
+/* ── PROGRESS BAR ── */
+#progress{position:fixed;top:0;left:0;height:2px;background:var(--grad-cta);z-index:9999;width:0%;transition:width .1s}
+
+/* ── BUTTONS ── */
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--grad-cta);color:#fff;
+  padding:14px 28px;border-radius:10px;
+  font-weight:600;font-size:16px;
+  box-shadow:var(--shadow-cta);
+  transition:all .3s cubic-bezier(.22,1,.36,1);
+  white-space:nowrap;position:relative;overflow:hidden;
+}
+.btn-primary::after{
+  content:'';position:absolute;top:-50%;left:-75%;
+  width:50%;height:200%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
+  transform:skewX(-20deg);transition:left .55s ease;
+}
+.btn-primary:hover::after{left:130%}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:var(--shadow-cta-hover)}
+.btn-primary:active{transform:scale(.97)}
+
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid rgba(77,159,255,.4);color:var(--blue);
+  padding:13px 26px;border-radius:10px;
+  font-weight:500;font-size:16px;
+  transition:all .3s cubic-bezier(.22,1,.36,1);
+  position:relative;overflow:hidden;
+}
+.btn-secondary:hover{border-color:rgba(77,159,255,.85);transform:translateY(-2px);background:rgba(77,159,255,.06)}
+
+/* ── LAYOUT ── */
+.container{max-width:1180px;margin:0 auto;padding:0 24px}
+.section{padding:96px 0}
+
+/* ── GLASS CARD ── */
+.glass{
+  background:rgba(255,255,255,.04);
+  backdrop-filter:blur(16px);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+}
+
+/* ── SCROLL ANIMATIONS ── */
+.reveal{opacity:0;transform:translateY(44px);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-48px);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
+.reveal-left.visible{opacity:1;transform:none}
+.reveal-right{opacity:0;transform:translateX(48px);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
+.reveal-right.visible{opacity:1;transform:none}
+.reveal-scale{opacity:0;transform:scale(.92);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal-scale.visible{opacity:1;transform:scale(1)}
+
+/* ─────────────────────────────────────
+   NAVBAR
+───────────────────────────────────── */
+#navbar{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  padding:16px 0;
+  transition:background .4s,backdrop-filter .4s,border-color .4s;
+  border-bottom:1px solid transparent;
+}
+#navbar.scrolled{
+  background:rgba(7,7,26,.88);
+  backdrop-filter:blur(20px);
+  border-color:var(--border);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.nav-logo{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:var(--white)}
+.nav-logo span{color:var(--blue)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--muted);font-size:15px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{padding:10px 20px;font-size:14px}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px;transition:.3s}
+
+/* ─────────────────────────────────────
+   HERO
+───────────────────────────────────── */
+#hero{
+  min-height:100vh;display:flex;align-items:center;
+  position:relative;overflow:hidden;padding-top:80px;
+}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.orb{
+  position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;
+  animation:orbFloat 8s ease-in-out infinite;
+}
+.orb-1{width:520px;height:520px;background:rgba(77,159,255,.07);top:-100px;right:10%;animation-delay:0s}
+.orb-2{width:420px;height:420px;background:rgba(121,89,173,.09);bottom:-80px;right:35%;animation-delay:-4s}
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(rgba(77,159,255,.03) 1px,transparent 1px);
+  background-size:32px 32px;
+}
+@keyframes orbFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.05)}}
+
+.hero-inner{
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:1fr 420px;
+  gap:48px;align-items:center;
+  min-height:calc(100vh - 80px);width:100%;
+}
+.hero-content{padding:60px 0;display:flex;flex-direction:column;gap:28px;max-width:580px}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(121,89,173,.22);border:1px solid rgba(121,89,173,.4);
+  padding:8px 16px;border-radius:40px;
+  color:#fff;font-size:14px;font-weight:500;width:fit-content;
+}
+.hero-tag::before{content:'✦';color:var(--magenta)}
+.hero-h1{line-height:1.1}
+.hero-sub{font-size:18px;color:var(--muted);max-width:500px;line-height:1.7}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.hero-social{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  font-size:13px;color:var(--muted);
+}
+.hero-social .stars{color:#FFC107}
+.hero-social .sep{opacity:.4}
+
+/* Hero photo */
+.hero-visual{position:relative;align-self:stretch;display:flex;align-items:center;padding:48px 0}
+.hero-photo-frame{
+  position:relative;width:100%;height:min(680px,76vh);
+  border-radius:28px;overflow:hidden;
+  box-shadow:0 0 0 1px rgba(77,159,255,.14),0 32px 80px rgba(0,0,0,.55),0 0 120px rgba(121,89,173,.10);
+}
+.hero-photo-frame img{width:100%;height:100%;object-fit:cover;object-position:50% 8%;display:block}
+.hero-photo-frame::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to bottom,transparent 45%,rgba(7,7,26,.9) 100%),
+             linear-gradient(to right,rgba(7,7,26,.1) 0%,transparent 30%);
+}
+/* Stats over photo */
+.hero-stats{
+  position:absolute;bottom:20px;left:16px;right:16px;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:8px;z-index:3;
+}
+.h-stat{
+  display:flex;flex-direction:column;gap:2px;
+  background:rgba(8,8,25,.82);backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.13);border-radius:12px;padding:10px 14px;
+}
+.h-stat-num{font-family:'DM Mono',monospace;font-size:20px;font-weight:500;color:var(--blue);line-height:1}
+.h-stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+
+/* ─────────────────────────────────────
+   TRUST BAR
+───────────────────────────────────── */
+#trust{padding:48px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.trust-item{text-align:center;padding:24px 16px;border-right:1px solid var(--border)}
+.trust-item:last-child{border-right:none}
+.trust-num{
+  font-family:'DM Mono',monospace;font-size:clamp(22px,2.5vw,36px);
+  font-weight:500;color:var(--emerald);line-height:1;margin-bottom:8px;
+  animation:floatUp 4s ease-in-out infinite;
+}
+.trust-num.blue{color:var(--blue)}
+.trust-item:nth-child(2) .trust-num{animation-delay:.7s}
+.trust-item:nth-child(3) .trust-num{animation-delay:1.4s}
+.trust-item:nth-child(4) .trust-num{animation-delay:2.1s}
+@keyframes floatUp{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.trust-label{font-size:14px;color:var(--muted);line-height:1.4}
+
+/* ─────────────────────────────────────
+   ABOUT
+───────────────────────────────────── */
+.about-grid{display:grid;grid-template-columns:380px 1fr;gap:64px;align-items:center}
+.about-photo-wrap{position:relative}
+.about-photo-frame{
+  border-radius:24px;overflow:hidden;
+  border:1px solid rgba(77,159,255,.15);
+  box-shadow:0 0 80px rgba(121,89,173,.12),0 32px 64px rgba(0,0,0,.4);
+}
+.about-photo-frame img{width:100%;height:460px;object-fit:cover;object-position:50% 8%;display:block}
+.about-glow{
+  position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);
+  width:280px;height:80px;border-radius:50%;
+  background:radial-gradient(circle,rgba(121,89,173,.35) 0%,transparent 70%);
+  filter:blur(20px);pointer-events:none;
+}
+.about-text{display:flex;flex-direction:column;gap:24px}
+.about-lead{font-size:18px;color:var(--body);line-height:1.75}
+.about-lead strong{color:var(--white)}
+.timeline{display:flex;flex-direction:column;gap:0;margin-top:8px}
+.tl-item{
+  display:grid;grid-template-columns:80px 1fr;gap:16px;
+  padding:20px 0;border-bottom:1px solid var(--border);
+}
+.tl-item:last-child{border-bottom:none}
+.tl-year{font-family:'DM Mono',monospace;font-size:12px;color:var(--blue);font-weight:500;padding-top:3px;letter-spacing:.05em}
+.tl-body h4{font-size:15px;font-weight:600;color:var(--white);margin-bottom:4px}
+.tl-body p{font-size:14px;color:var(--muted);line-height:1.6}
+
+/* ─────────────────────────────────────
+   TOPICS (что я рассказываю)
+───────────────────────────────────── */
+.topics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.topic-card{
+  padding:28px 24px;border-radius:var(--r);
+  background:rgba(255,255,255,.03);border:1px solid var(--border);
+  transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .3s,box-shadow .35s;
+  position:relative;overflow:hidden;
+}
+.topic-card::before{
+  content:'';position:absolute;inset:0;border-radius:var(--r);
+  background:radial-gradient(circle at 50% 0%,rgba(121,89,173,.08) 0%,transparent 70%);
+  opacity:0;transition:opacity .4s;
+}
+.topic-card:hover{transform:translateY(-5px);border-color:rgba(121,89,173,.35);box-shadow:0 12px 40px rgba(121,89,173,.12)}
+.topic-card:hover::before{opacity:1}
+.topic-icon{font-size:28px;margin-bottom:14px;display:block}
+.topic-title{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:600;color:var(--white);margin-bottom:8px;line-height:1.3}
+.topic-desc{font-size:14px;color:var(--muted);line-height:1.65}
+.topic-tag{
+  display:inline-block;margin-top:14px;
+  font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--blue);background:rgba(77,159,255,.1);
+  border:1px solid rgba(77,159,255,.2);
+  padding:4px 10px;border-radius:20px;
+}
+
+/* ─────────────────────────────────────
+   PROJECTS
+───────────────────────────────────── */
+.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:48px}
+.project-card{
+  background:rgba(255,255,255,.04);backdrop-filter:blur(16px);
+  border:1px solid var(--border);border-radius:var(--r);
+  padding:32px;position:relative;overflow:hidden;
+  transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .3s,box-shadow .35s;
+}
+.project-card:hover{transform:translateY(-5px);border-color:rgba(77,159,255,.25);box-shadow:0 16px 48px rgba(0,0,0,.3)}
+.project-num{
+  position:absolute;top:16px;right:20px;
+  font-family:'DM Mono',monospace;font-size:48px;font-weight:500;
+  color:rgba(255,255,255,.05);line-height:1;pointer-events:none;
+}
+.project-tag{
+  display:inline-block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--violet);margin-bottom:12px;
+}
+.project-title{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:10px;line-height:1.3}
+.project-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:18px}
+.project-link{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:13px;color:var(--blue);font-weight:500;
+  border:1px solid rgba(77,159,255,.3);padding:7px 16px;border-radius:20px;
+  transition:background .2s,border-color .2s;
+}
+.project-link:hover{background:rgba(77,159,255,.1);border-color:rgba(77,159,255,.6)}
+.project-link svg{width:12px;height:12px}
+
+/* ─────────────────────────────────────
+   AI AGENTS
+───────────────────────────────────── */
+.agents-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:48px}
+.agent-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border);border-radius:var(--r);
+  padding:36px 32px;
+  transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .3s,box-shadow .35s;
+  position:relative;overflow:hidden;
+}
+.agent-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--grad-cta);opacity:0;transition:opacity .4s;
+}
+.agent-card:hover{transform:translateY(-5px);border-color:rgba(195,48,190,.25);box-shadow:0 16px 48px rgba(121,89,173,.12)}
+.agent-card:hover::before{opacity:1}
+.agent-icon{font-size:32px;margin-bottom:16px;display:block}
+.agent-title{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:10px;line-height:1.3}
+.agent-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:20px}
+.agent-result{
+  display:flex;align-items:center;gap:10px;
+  background:rgba(0,212,170,.08);border:1px solid rgba(0,212,170,.2);
+  border-radius:10px;padding:12px 16px;
+}
+.agent-result-icon{font-size:18px;flex-shrink:0}
+.agent-result-text{font-size:13px;color:var(--emerald);font-weight:500;line-height:1.5}
+.agent-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.agent-step{
+  display:flex;align-items:flex-start;gap:12px;
+  font-size:14px;color:var(--body);line-height:1.5;
+}
+.agent-step-num{
+  font-family:'DM Mono',monospace;font-size:12px;font-weight:500;
+  color:var(--magenta);background:rgba(195,48,190,.12);border:1px solid rgba(195,48,190,.2);
+  border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  margin-top:2px;
+}
+
+/* ─────────────────────────────────────
+   TESTIMONIALS
+───────────────────────────────────── */
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.test-card{
+  background:rgba(255,255,255,.04);backdrop-filter:blur(16px);
+  border:1px solid var(--border);border-radius:var(--r);
+  padding:28px;
+  transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .3s;
+}
+.test-card:hover{transform:translateY(-4px);border-color:rgba(121,89,173,.3)}
+.test-head{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.test-avatar{
+  width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:top center;
+  flex-shrink:0;border:2px solid rgba(121,89,173,.4);
+}
+.test-avatar-placeholder{
+  width:52px;height:52px;border-radius:50%;flex-shrink:0;
+  background:var(--grad-cta);display:flex;align-items:center;justify-content:center;
+  font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:#fff;
+}
+.test-name{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:var(--white);margin-bottom:2px}
+.test-role{font-size:12px;color:var(--muted)}
+.test-stars{color:#FFC107;font-size:13px;letter-spacing:1px;margin-bottom:14px}
+.test-quote{
+  font-size:15px;font-style:italic;color:rgba(195,48,190,.9);line-height:1.65;
+  border-left:2px solid rgba(195,48,190,.3);padding-left:14px;margin-bottom:16px;
+  font-family:'Space Grotesk',sans-serif;
+}
+.test-metrics{display:flex;flex-direction:column;gap:8px}
+.metric-row{display:grid;grid-template-columns:1fr 18px 1fr;gap:4px;align-items:start;font-size:13px}
+.metric-before{color:var(--muted);line-height:1.4}
+.metric-arr{color:var(--blue);text-align:center;padding-top:1px}
+.metric-after{color:var(--emerald);font-weight:600;line-height:1.4}
+
+/* ─────────────────────────────────────
+   CTA FINAL
+───────────────────────────────────── */
+#cta{
+  padding:96px 0;position:relative;overflow:hidden;
+  background:radial-gradient(circle at 50% 50%,rgba(121,89,173,.08) 0%,transparent 70%);
+}
+.cta-inner{
+  text-align:center;max-width:680px;margin:0 auto;
+  display:flex;flex-direction:column;align-items:center;gap:24px;
+}
+.cta-inner h2{font-size:clamp(28px,4vw,52px)}
+.cta-inner p{font-size:18px;color:var(--muted);max-width:500px;line-height:1.7}
+.cta-btns{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.cta-note{font-size:13px;color:var(--muted)}
+
+/* ─────────────────────────────────────
+   FOOTER
+───────────────────────────────────── */
+#footer{
+  padding:40px 0 28px;
+  border-top:1px solid var(--border);
+}
+.footer-inner{
+  display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;
+  gap:20px;
+}
+.footer-logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;color:var(--white)}
+.footer-logo span{color:var(--blue)}
+.footer-copy{font-size:13px;color:var(--muted)}
+
+/* ─────────────────────────────────────
+   CURSOR GLOW
+───────────────────────────────────── */
+@media(hover:hover){
+  #cursor-glow{
+    position:fixed;pointer-events:none;z-index:1;
+    width:380px;height:380px;border-radius:50%;
+    background:radial-gradient(circle,rgba(121,89,173,.07) 0%,transparent 70%);
+    transform:translate(-50%,-50%);
+    opacity:0;transition:opacity .5s;
+    will-change:transform;
+  }
+}
+
+/* ─────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────── */
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;min-height:auto}
+  .hero-visual{display:none}
+  .about-grid{grid-template-columns:1fr;gap:40px}
+  .about-photo-wrap{max-width:340px;margin:0 auto}
+  .about-photo-frame img{height:380px}
+  .trust-grid{grid-template-columns:repeat(2,1fr)}
+  .trust-item:nth-child(2){border-right:none}
+  .trust-item:nth-child(3){border-top:1px solid var(--border);border-right:1px solid var(--border)}
+  .trust-item:nth-child(4){border-top:1px solid var(--border);border-right:none}
+  .topics-grid{grid-template-columns:repeat(2,1fr)}
+  .agents-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .section{padding:64px 0}
+  .nav-links,.nav-cta{display:none}
+  .nav-burger{display:flex}
+  .projects-grid{grid-template-columns:1fr}
+  .test-grid{grid-template-columns:1fr}
+  .topics-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .hero-btns{flex-direction:column;align-items:flex-start}
+  .trust-grid{grid-template-columns:1fr 1fr}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<div id="cursor-glow"></div>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <div class="nav-logo">Екатерина <span>Яхонтова</span></div>
+      <div class="nav-links">
+        <a href="#about">Об авторе</a>
+        <a href="#topics">Темы</a>
+        <a href="#projects">Проекты</a>
+        <a href="#agents">AI-агенты</a>
+        <a href="#results">Результаты</a>
+      </div>
+      <a href="https://t.me/yahontova_finance" target="_blank" class="btn-primary nav-cta">Пригласить спикером →</a>
+      <button class="nav-burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+  </div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-tag">Спикер · Практик · Создатель AI-инструментов</div>
+        <h1 class="hero-h1">
+          Екатерина<br>
+          <span class="grad-text">Яхонтова</span>
+        </h1>
+        <p class="hero-sub">18 лет в финансах. Делегировала нейросетям половину своей работы — не теоретически. Рассказываю, как это сделать финансистам, CFO и командам.</p>
+        <div class="hero-btns">
+          <a href="https://t.me/yahontova_finance" target="_blank" class="btn-primary">Пригласить спикером →</a>
+          <a href="#topics" class="btn-secondary">Темы выступлений ↓</a>
+        </div>
+        <div class="hero-social">
+          <span class="stars">★★★★★</span>
+          <span class="sep">·</span>
+          <span>1000+ учеников</span>
+          <span class="sep">·</span>
+          <span>15+ образовательных продуктов</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-photo-frame">
+          <img src="Яхонтова (фон удален).jpeg" alt="Екатерина Яхонтова">
+          <div class="hero-stats">
+            <div class="h-stat">
+              <span class="h-stat-num mono">18</span>
+              <span class="h-stat-label">лет в финансах</span>
+            </div>
+            <div class="h-stat">
+              <span class="h-stat-num mono">145</span>
+              <span class="h-stat-label">компаний-клиентов</span>
+            </div>
+            <div class="h-stat">
+              <span class="h-stat-num mono">50%</span>
+              <span class="h-stat-label">задач — нейросети</span>
+            </div>
+            <div class="h-stat">
+              <span class="h-stat-num mono">15+</span>
+              <span class="h-stat-label">обр. продуктов</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TRUST BAR ═══ -->
+<section id="trust">
+  <div class="container">
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-num mono">18+</div>
+        <div class="trust-label">лет практики<br>в финансах</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-num blue mono">1 000+</div>
+        <div class="trust-label">финансистов<br>прошли обучение</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-num mono">145</div>
+        <div class="trust-label">компаний<br>с выстроенным учётом</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-num blue mono">50%</div>
+        <div class="trust-label">задач делегировано<br>нейросетям</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-photo-wrap reveal-left">
+        <div class="about-photo-frame">
+          <img src="Яхонтова (фон удален).jpeg" alt="Екатерина Яхонтова">
+        </div>
+        <div class="about-glow"></div>
+      </div>
+      <div class="about-text reveal-right">
+        <div>
+          <h2 class="section-title">Финансист, которая не<br>остановилась на теории</h2>
+        </div>
+        <p class="about-lead">
+          Я основала школу финансового аутсорсинга, построила управленческий учёт в <strong>145 компаниях</strong>, обучила <strong>1000+ финансистов</strong>.<br><br>
+          А потом делегировала нейросетям половину своей работы. Не теоретически — руками. Cursor, Apps Script, боты, AI-агенты — без разработчиков.
+        </p>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-year">БАЗА</div>
+            <div class="tl-body">
+              <h4>18 лет в финансах</h4>
+              <p>Управленческий учёт, финансовый аутсорсинг, 145 компаний-клиентов</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">ШКОЛА</div>
+            <div class="tl-body">
+              <h4>Основатель школы финансового аутсорсинга</h4>
+              <p>1000+ учеников, 15+ образовательных продуктов</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">AI</div>
+            <div class="tl-body">
+              <h4>Создаю AI-инструменты сама</h4>
+              <p>Cursor, Apps Script, Telegram-боты, GPT-агенты — под реальные финансовые задачи</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">СЕЙЧАС</div>
+            <div class="tl-body">
+              <h4>50% задач делегировала нейросетям</h4>
+              <p>Обучаю этому других финансистов — через курс и выступления</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TOPICS ═══ -->
+<section id="topics" class="section" style="background:rgba(77,159,255,.02);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:0">
+      <h2 class="section-title">О чём я рассказываю</h2>
+      <p class="section-sub" style="margin:16px auto 0;text-align:center">Практические кейсы из финансовой работы — без воды и абстракций</p>
+    </div>
+    <div class="topics-grid">
+
+      <div class="topic-card reveal">
+        <span class="topic-icon">⚡</span>
+        <div class="topic-title">Как автоматизировать рутину финансиста</div>
+        <div class="topic-desc">Конкретные инструменты: ChatGPT для анализа данных, Apps Script для автоматизации отчётов, Cursor для создания мини-приложений. Без программирования.</div>
+        <span class="topic-tag">Практика</span>
+      </div>
+
+      <div class="topic-card reveal" style="transition-delay:.1s">
+        <span class="topic-icon">📄</span>
+        <div class="topic-title">Быстрое формирование шаблонов документов</div>
+        <div class="topic-desc">Аналитические записки, аудиторские заключения, регламенты — нейросеть пишет первый черновик за минуты. Показываю промпты, которые работают в финансах.</div>
+        <span class="topic-tag">Из курса AI для финансиста</span>
+      </div>
+
+      <div class="topic-card reveal" style="transition-delay:.2s">
+        <span class="topic-icon">📊</span>
+        <div class="topic-title">AI для план/факт анализа и бюджетирования</div>
+        <div class="topic-desc">Как ускорить сборку бюджета из 300+ статей с часов до секунд. Автоматизация сверок, консолидации, комментариев к отклонениям.</div>
+        <span class="topic-tag">Финансовый анализ</span>
+      </div>
+
+      <div class="topic-card reveal" style="transition-delay:.1s">
+        <span class="topic-icon">🤖</span>
+        <div class="topic-title">GPT-агенты для финансовых процессов</div>
+        <div class="topic-desc">Как создать агента, который помогает писать аудиторские заключения, анализировать сделки, формировать заключения по данным — без IT-отдела.</div>
+        <span class="topic-tag">AI-агенты</span>
+      </div>
+
+      <div class="topic-card reveal" style="transition-delay:.2s">
+        <span class="topic-icon">🧾</span>
+        <div class="topic-title">Автоматизация работы с первичкой и выписками</div>
+        <div class="topic-desc">Извлечение данных из выписок банков, отчётов маркетплейсов, эквайринга. Что раньше занимало дни — теперь в несколько кликов.</div>
+        <span class="topic-tag">Автоматизация</span>
+      </div>
+
+      <div class="topic-card reveal" style="transition-delay:.3s">
+        <span class="topic-icon">🛡️</span>
+        <div class="topic-title">AI не заменит финансиста. Но изменит его роль</div>
+        <div class="topic-desc">Почему финансисты с AI будут востребованы больше. Как перестать бояться и начать использовать. Честно — без хайпа и страшилок.</div>
+        <span class="topic-tag">Стратегия</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROJECTS ═══ -->
+<section id="projects" class="section">
+  <div class="container">
+    <div class="reveal">
+      <h2 class="section-title">Мои проекты</h2>
+      <p class="section-sub" style="margin-top:12px">Инструменты для реальных финансовых задач — без разработчиков</p>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-num">01</div>
+        <div class="project-tag">Инструмент для бизнеса</div>
+        <div class="project-title">Калькулятор аутсорсера</div>
+        <div class="project-desc">Считает ставку для заказчика с учётом налогов, накладных и маржи. Сохранение расчётов, сравнение сценариев, PDF-экспорт, шеринг ссылкой.</div>
+        <a class="project-link" href="https://kalrylyator-autsorsera.vercel.app" target="_blank">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M4 2h6v6"/></svg>
+          Открыть проект
+        </a>
+      </div>
+
+      <div class="project-card reveal" style="transition-delay:.1s">
+        <div class="project-num">02</div>
+        <div class="project-tag">Автоматизация отчётности</div>
+        <div class="project-title">Обработка отчётности Wildberries</div>
+        <div class="project-desc">Мини-приложение на Cursor для финансового менеджера: автоматизирует сбор данных из отчётности WB. Работу с часов сокращает до минут.</div>
+      </div>
+
+      <div class="project-card reveal" style="transition-delay:.1s">
+        <div class="project-num">03</div>
+        <div class="project-tag">Финансовая аналитика</div>
+        <div class="project-title">Обработка данных по эквайрингу</div>
+        <div class="project-desc">Приложение автоматически извлекает суммы комиссий из описаний транзакций. Устраняет ручной разбор выписок и ошибки в расчётах.</div>
+      </div>
+
+      <div class="project-card reveal" style="transition-delay:.2s">
+        <div class="project-num">04</div>
+        <div class="project-tag">Автоматизация коммуникаций</div>
+        <div class="project-title">Бот-напоминалка для документов</div>
+        <div class="project-desc">Google Sheets + Telegram-бот: ведёт реестр операций, сам пишет клиентам о недостающих документах. Никакой подписки, работает в фоне.</div>
+        <a class="project-link" href="https://rutube.ru/video/private/ee24ac4a6d1692dad2cf33e0fe40af92/?p=8Gwup4kqXwKI9_KtcVRH_g" target="_blank">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M4 2h6v6"/></svg>
+          Смотреть видео
+        </a>
+      </div>
+
+      <div class="project-card reveal" style="transition-delay:.1s">
+        <div class="project-num">05</div>
+        <div class="project-tag">API-интеграция</div>
+        <div class="project-title">Обмен данными с Финтабло через API</div>
+        <div class="project-desc">Google Sheets как центр управления: быстрая загрузка данных в сервис финансового учёта Финтабло и выгрузка обратно. Без ручного копирования и экспорта файлов.</div>
+        <a class="project-link" href="https://docs.google.com/spreadsheets/d/1kXMxSLjzq9pjFXrPlSXZwGMFGqQ83ZFGQFfXdB9o8b8/edit?gid=77709465#gid=77709465" target="_blank">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M4 2h6v6"/></svg>
+          Открыть проект
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AI AGENTS ═══ -->
+<section id="agents" class="section" style="background:rgba(121,89,173,.03);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <div class="section-tag" style="justify-content:center">AI-агенты</div>
+      <h2 class="section-title">Создаю агентов для финансовых процессов</h2>
+      <p class="section-sub" style="margin:16px auto 0;text-align:center">Автоматизирую сложные многошаговые процессы — там, где обычного промпта недостаточно</p>
+    </div>
+    <div class="agents-grid">
+
+      <div class="agent-card reveal">
+        <span class="agent-icon">🔍</span>
+        <div class="agent-title">Аудит управленческой отчётности + GPT-агент</div>
+        <div class="agent-desc">Разработала для консалтинговой компании полный процесс аудита управленческой отчётности клиента с интеграцией GPT-агента.</div>
+        <div class="agent-steps">
+          <div class="agent-step">
+            <div class="agent-step-num">1</div>
+            <span>Загрузка отчётности клиента в структурированный шаблон</span>
+          </div>
+          <div class="agent-step">
+            <div class="agent-step-num">2</div>
+            <span>GPT-агент анализирует данные по заданным критериям аудита</span>
+          </div>
+          <div class="agent-step">
+            <div class="agent-step-num">3</div>
+            <span>Автоматическое формирование черновика аудиторского заключения</span>
+          </div>
+          <div class="agent-step">
+            <div class="agent-step-num">4</div>
+            <span>Специалист проверяет и утверждает — вместо написания с нуля</span>
+          </div>
+        </div>
+        <div class="agent-result">
+          <span class="agent-result-icon">⏱</span>
+          <span class="agent-result-text">Экономия 3 часа на одного клиента — только на этапе подготовки заключения</span>
+        </div>
+      </div>
+
+      <div class="agent-card reveal" style="transition-delay:.15s">
+        <span class="agent-icon">📬</span>
+        <div class="agent-title">Агент-контролёр документооборота</div>
+        <div class="agent-desc">Google Sheets как база данных + Telegram-бот как интерфейс. Агент сам отслеживает статус документов и инициирует коммуникацию с клиентами.</div>
+        <div class="agent-steps">
+          <div class="agent-step">
+            <div class="agent-step-num">1</div>
+            <span>Реестр операций ведётся в Google Sheets</span>
+          </div>
+          <div class="agent-step">
+            <div class="agent-step-num">2</div>
+            <span>Агент отслеживает дедлайны и статус документов</span>
+          </div>
+          <div class="agent-step">
+            <div class="agent-step-num">3</div>
+            <span>Автоматически отправляет напоминания клиентам в Telegram</span>
+          </div>
+        </div>
+        <div class="agent-result">
+          <span class="agent-result-icon">✅</span>
+          <span class="agent-result-text">Ноль ручных напоминаний. Работает в фоне без подписок и IT-инфраструктуры</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section id="results" class="section">
+  <div class="container">
+    <div class="reveal">
+      <h2 class="section-title">Финансисты, которые уже изменили свою работу</h2>
+    </div>
+    <div class="test-grid">
+
+      <div class="test-card reveal">
+        <div class="test-head">
+          <img class="test-avatar" src="Ольга Пахолкова.jpg" alt="Ольга Пахолкова">
+          <div>
+            <div class="test-name">Ольга Пахолкова</div>
+            <div class="test-role">Главный экономист · 20+ лет опыта</div>
+          </div>
+        </div>
+        <div class="test-stars">★★★★★</div>
+        <div class="test-quote">«Я не проживаю ни дня, чтобы не сделать что-нибудь с помощью AI»</div>
+        <div class="test-metrics">
+          <div class="metric-row">
+            <span class="metric-before">Бюджет 300+ статей — неделя</span>
+            <span class="metric-arr">→</span>
+            <span class="metric-after">Кнопка. Секунды.</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-before">2 дня на сверку</span>
+            <span class="metric-arr">→</span>
+            <span class="metric-after">Загрузила, выпила кофе</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-before">Бюджет в 23:00 — стресс</span>
+            <span class="metric-arr">→</span>
+            <span class="metric-after">20 сек — ночь спокойна</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card reveal" style="transition-delay:.1s">
+        <div class="test-head">
+          <img class="test-avatar" src="Мария Ермакова.png" alt="Мария Ермакова">
+          <div>
+            <div class="test-name">Мария Ермакова</div>
+            <div class="test-role">Финансовый директор</div>
+          </div>
+        </div>
+        <div class="test-stars">★★★★★</div>
+        <div class="test-quote">«До курса — фантастика. Теперь это мой личный ассистент с формулами, анализом и контентом»</div>
+        <div class="test-metrics">
+          <div class="metric-row">
+            <span class="metric-before">Сверка 890 строк — 4–5 часов</span>
+            <span class="metric-arr">→</span>
+            <span class="metric-after">35 мин с 1-го промта</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-before">Формулы — искала в интернете</span>
+            <span class="metric-arr">→</span>
+            <span class="metric-after">Пишет сама с 1-го раза</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card reveal" style="transition-delay:.2s">
+        <div class="test-head">
+          <div class="test-avatar-placeholder">А</div>
+          <div>
+            <div class="test-name">Анна</div>
+            <div class="test-role">Финансово-юридическое сопровождение · 30+ лет опыта</div>
+          </div>
+        </div>
+        <div class="test-stars">★★★★★</div>
+        <div class="test-quote">«Получила реальных виртуальных помощников — налоговый консультант, юрист, комплаенс, финансист»</div>
+        <div class="test-metrics">
+          <div class="metric-row">
+            <span class="metric-before">Анализ сделки — 1–2 дня</span>
+            <span class="metric-arr">→</span>
+            <span class="metric-after">3 часа с AI-агентом</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-before">Возврат из бюджета — 6 мес.</span>
+            <span class="metric-arr">→</span>
+            <span class="metric-after">200 тыс. ₽ получены</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <div class="section-tag" style="justify-content:center">Пригласить спикером</div>
+      <h2>Хотите такое выступление<br>для своей аудитории?</h2>
+      <p>Выступаю на конференциях, корпоративных мероприятиях и в профессиональных сообществах. Форматы: лекция, мастер-класс, панельная дискуссия.</p>
+      <div class="cta-btns">
+        <a href="https://t.me/yahontova_finance" target="_blank" class="btn-primary">Написать в Telegram →</a>
+      </div>
+      <div class="cta-note">Отвечаю в течение дня</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">Екатерина <span>Яхонтова</span></div>
+      <div class="footer-copy">Финансы × AI · 2026</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── PROGRESS BAR ── */
+const progress = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const max = document.body.scrollHeight - window.innerHeight;
+  progress.style.width = (window.scrollY / max * 100) + '%';
+}, {passive: true});
+
+/* ── NAVBAR SCROLL ── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+}, {passive: true});
+
+/* ── SCROLL REVEAL ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      const delay = parseFloat(e.target.style.transitionDelay || 0) * 1000;
+      setTimeout(() => e.target.classList.add('visible'), delay);
+    }
+  });
+}, {threshold: 0.12});
+
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+  observer.observe(el);
+});
+
+/* ── CURSOR GLOW ── */
+const glow = document.getElementById('cursor-glow');
+if (glow && window.matchMedia('(hover: hover)').matches) {
+  glow.style.opacity = '1';
+  window.addEventListener('mousemove', e => {
+    glow.style.transform = `translate(${e.clientX - 190}px, ${e.clientY - 190}px)`;
+  }, {passive: true});
+}
+
+/* ── COUNT UP ── */
+function countUp(el, target, suffix = '') {
+  const duration = 1800;
+  const start = performance.now();
+  const update = (now) => {
+    const t = Math.min((now - start) / duration, 1);
+    const val = Math.round(t * target);
+    el.textContent = val.toLocaleString('ru') + suffix;
+    if (t < 1) requestAnimationFrame(update);
+  };
+  requestAnimationFrame(update);
+}
+
+const trustObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const nums = e.target.querySelectorAll('.trust-num');
+      const data = [
+        {val: 18, suf: '+'},
+        {val: 1000, suf: '+'},
+        {val: 145, suf: ''},
+        {val: 50, suf: '%'},
+      ];
+      nums.forEach((el, i) => {
+        if (data[i]) countUp(el, data[i].val, data[i].suf);
+      });
+      trustObs.disconnect();
+    }
+  });
+}, {threshold: 0.5});
+const trustSection = document.getElementById('trust');
+if (trustSection) trustObs.observe(trustSection);
+
+/* ── BURGER ── */
+document.getElementById('burger').addEventListener('click', () => {
+  const links = document.querySelector('.nav-links');
+  if (links) {
+    const open = links.style.display === 'flex';
+    links.style.display = open ? '' : 'flex';
+    links.style.flexDirection = 'column';
+    links.style.position = 'absolute';
+    links.style.top = '70px';
+    links.style.left = '0';
+    links.style.right = '0';
+    links.style.background = 'rgba(7,7,26,.97)';
+    links.style.padding = '20px 24px';
+    links.style.gap = '18px';
+    links.style.borderBottom = '1px solid rgba(255,255,255,.07)';
+    if (!open) {
+      links.style.display = 'flex';
+    } else {
+      links.style.display = 'none';
+    }
+  }
+});
+</script>
+</body>
+</html>
